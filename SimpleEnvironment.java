@@ -15,7 +15,7 @@ public class SimpleEnvironment implements Environment {
     }
 
     public SimpleEnvironment() {
-        this(3, 100);
+        this(4, 100);
     }
 
     /**
@@ -35,7 +35,8 @@ public class SimpleEnvironment implements Environment {
      */
     @Override
     public void submitGuess(double guess) {
-        if (currentStep < trace.length)
+        System.out.println("Submit Guess" + guess + " Trace Length " + trace.length + " Current Marker : " + currentStep);
+        if (currentStep < trace.length - 1)
             trace[++currentStep] = guess;
     }
 
@@ -49,8 +50,9 @@ public class SimpleEnvironment implements Environment {
     public void initialize(int seed, int maxLength) {
         Random rand = new Random();
         trace = new double[maxLength];
+        double factor = 1000;
         for (int idx = 0; idx < seed && idx < maxLength; idx++) {
-            trace[idx] = rand.nextFloat();
+            trace[idx] = (factor * rand.nextFloat()) - (idx > 0 ? trace[idx - 1] : 0);
             currentStep = idx;
         }
 
