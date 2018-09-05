@@ -1,4 +1,4 @@
-package ca.aawadall.chapter4;
+package ca.aawadall.ai;
 
 import java.util.Random;
 
@@ -15,7 +15,7 @@ public class SimpleAgent implements Agent {
     /**
      * Randomly generated simple agent
      */
-    public SimpleAgent() {
+    SimpleAgent() {
         Random rand = new Random();
         this.order = rand.nextInt(maxOrder) + 1;
         this.alpha = rand.nextFloat();
@@ -31,7 +31,7 @@ public class SimpleAgent implements Agent {
     /**
      * Given an environment, the agent will pull data points from its trace and attempt to enhance its model
      *
-     * @param env
+     * @param env is the environment to bid guess in
      */
     @Override
     public void guess(Environment env) {
@@ -44,7 +44,7 @@ public class SimpleAgent implements Agent {
     /**
      * fit curve, find next step
      *
-     * @param env
+     * @param env is the environment to learn from
      */
     private void learn(Environment env) {
         System.out.println(agentType + ": Learning to guess new value");
@@ -64,8 +64,8 @@ public class SimpleAgent implements Agent {
 
     /**
      * similar to forward propagation
-     * @param env
-     * @return
+     * @param env is the environment to calculate next guess from
+     * @return calculated guess
      */
     private double calculate(Environment env) {
         double[] trace = env.getTrace();

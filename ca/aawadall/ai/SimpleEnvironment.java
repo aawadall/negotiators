@@ -1,4 +1,4 @@
-package ca.aawadall.chapter4;
+package ca.aawadall.ai;
 
 import java.util.Random;
 import java.util.Arrays;
@@ -10,11 +10,11 @@ public class SimpleEnvironment implements Environment {
     private double[] trace;
     private int currentStep;
 
-    public SimpleEnvironment(int seed, int maxLength) {
+    private SimpleEnvironment(int seed, int maxLength) {
         this.initialize(seed, maxLength);
     }
 
-    public SimpleEnvironment() {
+    SimpleEnvironment() {
         this(4, 100);
     }
 

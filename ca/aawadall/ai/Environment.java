@@ -1,4 +1,4 @@
-package ca.aawadall.chapter4;
+package ca.aawadall.ai;
 
 /**
  * Exposes typical environment methods
