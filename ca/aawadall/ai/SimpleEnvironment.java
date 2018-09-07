@@ -10,7 +10,7 @@ public class SimpleEnvironment implements Environment {
     private double[] trace;
     private int currentStep;
 
-    private SimpleEnvironment(int seed, int maxLength) {
+    SimpleEnvironment(int seed, int maxLength) {
         this.initialize(seed, maxLength);
     }
 

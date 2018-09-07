@@ -3,9 +3,10 @@ package ca.aawadall.ai;
 public class Main {
     public static void main(String[] args) {
         // write your code here
-        Environment env = new SimpleEnvironment();
-        Agent agent1 = new SimpleAgent();
-        Agent agent2 = new SimpleAgent();
+        int iterations = 1000;
+        Environment env = new SimpleEnvironment( 1, iterations);
+        Agent agent1 = new ObjectiveAgent(1000, 1.5);
+        Agent agent2 = new ObjectiveAgent(-1000, 1.5);
         for (int turn = 0; turn < 99; turn++) {
             env.print();
             System.out.println("Agent 1 Plays");
