@@ -37,7 +37,7 @@ public class SimpleAgent implements Agent {
     public void guess(Environment env) {
         System.out.println(agentType + ": Guessing Next Value");
         learn(env);
-        env.submitGuess(calculate(env));
+        env.bid(calculate(env));
 
     }
 
@@ -49,7 +49,7 @@ public class SimpleAgent implements Agent {
     private void learn(Environment env) {
         System.out.println(agentType + ": Learning to guess new value");
 
-        double[] trace = env.getTrace();
+        double[] trace = env.getBidsTrace();
 
         System.out.println(agentType + ": Order = " + order);
         for (int idx = 0; idx < trace.length; idx++) {
@@ -68,7 +68,7 @@ public class SimpleAgent implements Agent {
      * @return calculated guess
      */
     private double calculate(Environment env) {
-        double[] trace = env.getTrace();
+        double[] trace = env.getBidsTrace();
         return calculate(trace.length);
 
     }

@@ -1,20 +1,32 @@
 package ca.aawadall.ai;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        // write your code here
+        Random random = new Random();
         int iterations = 1000;
         Environment env = new SimpleEnvironment( 1, iterations);
-        Agent agent1 = new ObjectiveAgent(1000, 1.5);
-        Agent agent2 = new ObjectiveAgent(-1000, 1.5);
-        for (int turn = 0; turn < 99; turn++) {
-            env.print();
-            System.out.println("Agent 1 Plays");
-            agent1.guess(env);
-            System.out.println("Agent 2 Plays");
-            agent2.guess(env);
+        Agent agent1 = new ObjectiveAgent(1000, random.nextDouble());
+        Agent agent2 = new ObjectiveAgent(-1000, random.nextDouble());
+        //for (int turn = 0; turn < 99 || !env.isAgreed(); turn++) {
+        int nextPlayer = 1;
+        while(!env.isAgreed())
+        {
+            System.out.print(env.isAgreed());
+            System.out.println(env.getLastBid());
+            System.out.print("Agent " + nextPlayer+ " plays: ");
+            if (nextPlayer == 1)
+                agent1.guess(env);
+            else
+                agent2.guess(env);
+
+
+            nextPlayer = nextPlayer == 1 ? 2 : 1;
+
+            System.out.println();
         }
-        env.print();
+        //env.print();
 
 
     }

@@ -9,12 +9,14 @@ import java.util.Arrays;
 public class SimpleEnvironment implements Environment {
     private double[] trace;
     private int currentStep;
-
+    private boolean agreement;
     SimpleEnvironment(int seed, int maxLength) {
+
         this.initialize(seed, maxLength);
     }
 
     SimpleEnvironment() {
+
         this(4, 100);
     }
 
@@ -24,8 +26,13 @@ public class SimpleEnvironment implements Environment {
      * @return populated sub-array from the trace array
      */
     @Override
-    public double[] getTrace() {
+    public double[] getBidsTrace() {
         return Arrays.copyOfRange(trace, 0, currentStep + 1);
+    }
+
+    @Override
+    public double getLastBid() {
+        return this.trace[this.currentStep];
     }
 
     /**
@@ -34,10 +41,28 @@ public class SimpleEnvironment implements Environment {
      * @param guess agent's guess of the next value
      */
     @Override
-    public void submitGuess(double guess) {
-        System.out.println("Submit Guess" + guess + " Trace Length " + trace.length + " Current Marker : " + currentStep);
+    public void bid(double guess) {
+        //System.out.println("Submit Guess" + guess + " Trace Length " + trace.length + " Current Marker : " + currentStep);
         if (currentStep < trace.length - 1)
             trace[++currentStep] = guess;
+    }
+
+    /**
+     * used to declare agreement
+     */
+    @Override
+    public void agree() {
+        this.agreement = true;
+    }
+
+    /**
+     * inquires on agreement status
+     *
+     * @return agreement status true for agreement and false for disagreement
+     */
+    @Override
+    public boolean isAgreed() {
+        return this.agreement;
     }
 
     /**
@@ -49,11 +74,12 @@ public class SimpleEnvironment implements Environment {
     @Override
     public void initialize(int seed, int maxLength) {
         Random rand = new Random();
-        trace = new double[maxLength];
+        this.trace = new double[maxLength];
+        this.agreement = false;
         double factor = 1000;
         for (int idx = 0; idx < seed && idx < maxLength; idx++) {
-            trace[idx] = (factor * rand.nextFloat()) - (idx > 0 ? trace[idx - 1] : 0);
-            currentStep = idx;
+            this.trace[idx] = (factor * rand.nextFloat()) - (idx > 0 ? this.trace[idx - 1] : 0);
+            this.currentStep = idx;
         }
 
     }
@@ -64,7 +90,7 @@ public class SimpleEnvironment implements Environment {
     @Override
     public void print() {
         System.out.println("Simple Environment Negotation Trace Values");
-        for (double element : this.getTrace()) {
+        for (double element : this.getBidsTrace()) {
             System.out.println(element);
         }
     }

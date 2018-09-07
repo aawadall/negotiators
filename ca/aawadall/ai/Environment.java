@@ -9,14 +9,31 @@ public interface Environment {
      *
      * @return populated sub-array of negotiation array
      */
-    double[] getTrace();
+    double[] getBidsTrace();
+
+    /**
+     * used to get last bid
+     * @return latest bid from bids trace
+     */
+    double getLastBid();
 
     /**
      * used to submit a guess at the end of the negotiation trace
      *
      * @param guess agent's guess
      */
-    void submitGuess(double guess);
+    void bid(double guess);
+
+    /**
+     * used to declare agreement
+     */
+    void agree();
+
+    /**
+     * inquires on agreement status
+     * @return agreement status true for agreement and false for disagreement
+     */
+    boolean isAgreed();
 
     /**
      * used to reset an environment
