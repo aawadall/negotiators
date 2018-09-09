@@ -10,3 +10,4 @@ This project was developed and tested on Ubuntu 18.04, with some minor testing o
 
 TODO:
 * simulate two way transactions, bid, and product delivered to simulate trading transactions
+* separate environments from agents to host environments on a cloud provider, e.g. AWS Lambda
