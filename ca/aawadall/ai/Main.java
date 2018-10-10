@@ -7,8 +7,8 @@ public class Main {
         Random random = new Random();
         int iterations = 1000;
         Environment env = new SimpleEnvironment( 1, iterations);
-        Agent agent1 = new ObjectiveAgent(1000, random.nextDouble());
-        Agent agent2 = new ObjectiveAgent(-1000, random.nextDouble());
+        Agent agent1 = new ObjectiveAgent(100, random.nextDouble());
+        Agent agent2 = new ObjectiveAgent(-100, random.nextDouble());
         //for (int turn = 0; turn < 99 || !env.isAgreed(); turn++) {
         int nextPlayer = 1;
         while(!env.isAgreed())
